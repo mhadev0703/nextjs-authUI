@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
 import { useFormState } from 'react-dom';
-import FormButton from '../components/form-btn';
-import FormInput from '../components/form-input';
+import FormButton from '../components/button';
+import FormInput from '../components/input';
 import { handleForm } from './action';
 import { FireIcon, EnvelopeIcon, UserIcon, KeyIcon, ShieldCheckIcon } from "@heroicons/react/24/solid";
 
 export default function LogIn() {
   const [state, action] = useFormState(handleForm, null);
 
-  const successMessage = state?.errors.length === 0 ? (
+  const successMessage = state?.errors && Object.keys(state.errors).length === 0 ? (
     <div className="flex items-center gap-2 text-green-500 bg-green-100 p-3 rounded">
       <ShieldCheckIcon className="w-6 h-6" />
       <span>Welcome back!</span>
@@ -28,7 +28,7 @@ export default function LogIn() {
           type="email"
           placeholder="Email"
           required
-          errors={[]}
+          errors={state?.errors?.email ?? []}
           icon={<EnvelopeIcon className='h-6 w-6 text-gray-500' />}
         />
         <FormInput
@@ -37,7 +37,7 @@ export default function LogIn() {
           type="text"
           placeholder="Username"
           required
-          errors={[]}
+          errors={state?.errors?.username ?? []}
           icon={<UserIcon className='h-6 w-6 text-gray-500' />}
         />
         <FormInput
@@ -46,7 +46,7 @@ export default function LogIn() {
           type="password"
           placeholder="Password"
           required
-          errors={state?.errors ?? []}
+          errors={state?.errors?.password ?? []}
           icon={<KeyIcon className='h-6 w-6 text-gray-500' />}
         />
         <FormButton text="Log in" />
