@@ -16,7 +16,7 @@ export default function FormInput({
 
   return (
     <div className="mb-4">
-      <div className="relative flex items-center">
+      <div className="relative">
         <span className="absolute inset-y-0 left-2 flex items-center">{icon}</span>
         <input
           name={name}
@@ -25,10 +25,16 @@ export default function FormInput({
           }`}
           {...rest}
         />
-        {hasError && (
-          <p className="absolute text-red-500 text-sm -bottom-5 left-0">{errors[0]}</p>
-        )}
       </div>
+      {hasError && (
+        <div className="mt-2">
+          {errors.map((error, index) => (
+            <p key={index} className="text-red-500 text-sm">
+              {error}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

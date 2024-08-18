@@ -6,7 +6,7 @@ export default function FormButton({ text }: { text: string }) {
   return (
     <button
       type="submit"
-      className={`w-full p-3 mt-4 text-black bg-gray-200 rounded-xl ${
+      className={`w-full p-3 text-black bg-gray-200 rounded-xl ${
         pending ? 'opacity-50 cursor-not-allowed' : ''
       }`}
       disabled={pending}
