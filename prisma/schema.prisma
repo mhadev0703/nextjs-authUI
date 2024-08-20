@@ -8,32 +8,32 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  username String @unique
-  password String 
-  email String @unique
-  bio String?
-  tweets Tweet[]
-  likes Like[]
+  id         Int      @id @default(autoincrement())
+  username   String   @unique
+  password   String
+  email      String   @unique
+  bio        String?
+  tweets     Tweet[]
+  likes      Like[]
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
 
 model Tweet {
-  id Int @id @default(autoincrement())
-  tweet String 
-  userId Int
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  likes Like[]
+  id         Int      @id @default(autoincrement())
+  tweet      String
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  likes      Like[]
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
 
 model Like {
-  id Int @id @default(autoincrement())
-  tweetId Int
-  userId Int
-  tweet Tweet @relation(fields: [tweetId], references: [id], onDelete: Cascade)
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id         Int      @id @default(autoincrement())
+  tweetId    Int
+  userId     Int
+  tweet      Tweet    @relation(fields: [tweetId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   created_at DateTime @default(now())
 }

@@ -1,5 +1,3 @@
-import { z } from "zod";
-
 export const EMAIL_DOMAIN = "@zod.com";
 export const EMAIL_DOMAIN_ERROR = "Only @zod.com emails are allowed";
 export const USERNAME_MIN_LENGTH = 5;
