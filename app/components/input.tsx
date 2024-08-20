@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from "react";
 
-interface FormInputProps {
+interface FormInputProps extends InputHTMLAttributes<HTMLInputElement>{
   name: string;
   errors?: string[];
   icon: React.ReactNode;
@@ -11,7 +11,7 @@ export default function FormInput({
   errors = [],
   icon,
   ...rest
-}: FormInputProps & InputHTMLAttributes<HTMLInputElement>) {
+}: FormInputProps) {
   const hasError = errors.length > 0;
 
   return (
