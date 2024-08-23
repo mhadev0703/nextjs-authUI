@@ -12,27 +12,25 @@ import db from "../lib/db";
 import { redirect } from "next/navigation";
 import getSession from "../lib/session";
 
-const createAccountSchema = z.object({
-  email: z
-    .string()
-    .email()
-    .toLowerCase(),
-  username: z
-    .string({
-      invalid_type_error: "Username must be a string!",
-      required_error: "This field is required.",
-    })
-    .min(USERNAME_MIN_LENGTH)
-    .toLowerCase()
-    .trim(),
-  password: z
-    .string()
-    .min(PASSWORD_MIN_LENGTH, { message: `Password should be at least ${PASSWORD_MIN_LENGTH} characters long` })
-    .regex(PASSWORD_REGEX, { message: PASSWORD_REGEX_ERROR }),
-  confirm_password: z
-    .string()
-    .min(PASSWORD_MIN_LENGTH),
-})
+const createAccountSchema = z
+  .object({
+    email: z.string().email().toLowerCase(),
+    username: z
+      .string({
+        invalid_type_error: "Username must be a string!",
+        required_error: "This field is required.",
+      })
+      .min(USERNAME_MIN_LENGTH)
+      .toLowerCase()
+      .trim(),
+    password: z
+      .string()
+      .min(PASSWORD_MIN_LENGTH, {
+        message: `Password should be at least ${PASSWORD_MIN_LENGTH} characters long`,
+      })
+      .regex(PASSWORD_REGEX, { message: PASSWORD_REGEX_ERROR }),
+    confirm_password: z.string().min(PASSWORD_MIN_LENGTH),
+  })
   .superRefine(async ({ username }, ctx) => {
     const user = await db.user.findUnique({
       where: { username },
@@ -93,6 +91,6 @@ export async function createAccount(prevState: any, formData: FormData) {
     const session = await getSession();
     session.id = user.id;
     await session.save();
-    redirect("/profile");
+    redirect("/");
   }
 }
