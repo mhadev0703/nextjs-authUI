@@ -30,10 +30,11 @@ model Tweet {
 }
 
 model Like {
-  id         Int      @id @default(autoincrement())
   tweetId    Int
   userId     Int
   tweet      Tweet    @relation(fields: [tweetId], references: [id], onDelete: Cascade)
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   created_at DateTime @default(now())
+
+  @@id(name: "id", [userId, tweetId])
 }
