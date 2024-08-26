@@ -1,5 +1,6 @@
 import db from "../app/lib/db";
 import TweetList from "./components/tweet-list";
+import AddTweet from "@/app/components/add-tweet";
 
 export interface Tweet {
   id: number;
@@ -41,14 +42,17 @@ export default async function Home() {
 
   return (
     <main className="flex justify-center w-screen min-h-screen p-8">
-      <div className="flex flex-col items-center gap-4 w-full max-w-80">
-        {tweets.length === 0 ? (
-          <p className="text-lg font-semibold text-center">
-            No tweets to show.
-          </p>
-        ) : (
-          <TweetList initialTweets={tweets} tweetsCount={tweetsCount} />
-        )}
+      <div className="flex flex-col gap-4 items-center w-full max-w-80">
+        <AddTweet />
+        <div className="flex flex-col items-center gap-4 w-full">
+          {tweets.length === 0 ? (
+            <p className="text-lg font-semibold text-center">
+              No tweets to show.
+            </p>
+          ) : (
+            <TweetList initialTweets={tweets} tweetsCount={tweetsCount} />
+          )}
+        </div>
       </div>
     </main>
   );

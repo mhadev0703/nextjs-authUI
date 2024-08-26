@@ -8,3 +8,10 @@ export function formatToTimeAgo(date: string): string {
 
   return formatter.format(diff, "days");
 }
+
+/**
+ * arr 이 배열이고 길이가 0이 아니라면 참
+ */
+export function isValidArray<T>(arr: T[] | undefined | null): arr is Array<T> {
+  return Array.isArray(arr) && arr.length !== 0;
+}
