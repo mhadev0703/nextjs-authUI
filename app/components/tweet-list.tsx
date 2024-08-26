@@ -30,7 +30,7 @@ export default function TweetList({
   return (
     <>
       <div className="flex flex-col gap-4 w-full">
-        {tweets.map((tweet) => (
+        {tweets.map(tweet => (
           <Link href={`/tweets/${tweet.id}`} key={tweet.id}>
             <TweetCard
               tweet={tweet.tweet}
@@ -42,7 +42,7 @@ export default function TweetList({
       </div>
       <div className="flex justify-between w-full mt-4">
         <button
-          onClick={() => setPage((prev) => prev - 1)}
+          onClick={() => setPage(prev => prev - 1)}
           className={`bg-blue-500 text-white px-4 py-2 rounded-lg ${
             page === 0 ? "invisible" : ""
           }`}
@@ -50,9 +50,9 @@ export default function TweetList({
           Previous
         </button>
         <button
-          onClick={() => setPage((prev) => prev + 1)}
+          onClick={() => setPage(prev => prev + 1)}
           className={`bg-blue-500 text-white px-4 py-2 rounded-lg ${
-            tweets.length < 5 || tweets.length + page * 5 >= tweetsCount
+            tweets.length < 3 || tweets.length + page * 3 >= tweetsCount
               ? "invisible"
               : ""
           }`}

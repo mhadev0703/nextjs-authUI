@@ -1,20 +1,27 @@
-'use client';
+"use client";
 
-import { useFormState } from 'react-dom';
-import FormButton from '../components/button';
-import FormInput from '../components/input';
-import { createAccount } from './action';
-import { FireIcon, EnvelopeIcon, UserIcon, KeyIcon, ShieldCheckIcon } from "@heroicons/react/24/solid";
+import { useFormState } from "react-dom";
+import FormButton from "../components/button";
+import FormInput from "../components/input";
+import { createAccount } from "./action";
+import {
+  FireIcon,
+  EnvelopeIcon,
+  UserIcon,
+  KeyIcon,
+  ShieldCheckIcon,
+} from "@heroicons/react/24/solid";
 
 export default function CreateAccount() {
   const [state, action] = useFormState(createAccount, null);
 
-  const successMessage = state?.fieldErrors && Object.keys(state.fieldErrors).length === 0 ? (
-    <div className="flex items-center gap-2 text-green-500 bg-green-100 p-3 rounded">
-      <ShieldCheckIcon className="w-6 h-6" />
-      <span>Account created successfully!</span>
-    </div>
-  ) : null;
+  const successMessage =
+    state?.fieldErrors && Object.keys(state.fieldErrors).length === 0 ? (
+      <div className="flex items-center gap-2 text-green-500 bg-green-100 p-3 rounded">
+        <ShieldCheckIcon className="w-6 h-6" />
+        <span>Account created successfully!</span>
+      </div>
+    ) : null;
 
   return (
     <div className="max-w-md mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
@@ -29,7 +36,7 @@ export default function CreateAccount() {
           placeholder="Email"
           required
           errors={state?.fieldErrors?.email ?? []}
-          icon={<EnvelopeIcon className='h-6 w-6 text-gray-500' />}
+          icon={<EnvelopeIcon className="h-6 w-6 text-gray-500" />}
         />
         <FormInput
           id="username"
@@ -38,7 +45,7 @@ export default function CreateAccount() {
           placeholder="Username"
           required
           errors={state?.fieldErrors?.username ?? []}
-          icon={<UserIcon className='h-6 w-6 text-gray-500' />}
+          icon={<UserIcon className="h-6 w-6 text-gray-500" />}
         />
         <FormInput
           id="password"
@@ -47,7 +54,7 @@ export default function CreateAccount() {
           placeholder="Password"
           required
           errors={state?.fieldErrors?.password ?? []}
-          icon={<KeyIcon className='h-6 w-6 text-gray-500' />}
+          icon={<KeyIcon className="h-6 w-6 text-gray-500" />}
         />
         <FormInput
           id="confirm_password"
@@ -56,10 +63,14 @@ export default function CreateAccount() {
           placeholder="Confirm Password"
           required
           errors={state?.fieldErrors?.confirm_password ?? []}
-          icon={<KeyIcon className='h-6 w-6 text-gray-500' />}
+          icon={<KeyIcon className="h-6 w-6 text-gray-500" />}
         />
         <FormButton text="Create Account " />
-        {successMessage && <p className="text-green-500 bg-green-100 p-3 rounded-xl">{successMessage}</p>}
+        {successMessage && (
+          <p className="text-green-500 bg-green-100 p-3 rounded-xl">
+            {successMessage}
+          </p>
+        )}
       </form>
     </div>
   );

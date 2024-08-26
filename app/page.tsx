@@ -1,4 +1,5 @@
 import db from "../app/lib/db";
+import AddTweet from "./components/add-tweet";
 import TweetList from "./components/tweet-list";
 
 export interface Tweet {
@@ -47,7 +48,10 @@ export default async function Home() {
             No tweets to show.
           </p>
         ) : (
-          <TweetList initialTweets={tweets} tweetsCount={tweetsCount} />
+          <div>
+            <AddTweet />
+            <TweetList initialTweets={tweets} tweetsCount={tweetsCount} />
+          </div>
         )}
       </div>
     </main>
