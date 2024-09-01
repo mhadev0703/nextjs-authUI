@@ -11,9 +11,9 @@ export default function FormButton({ text, className }: FormButtonProps) {
   return (
     <button
       type="submit"
-      className={`w-full p-3 text-black bg-gray-200 rounded-xl ${
+      className={`w-full p-3 rounded-xl ${
         pending ? "opacity-50 cursor-not-allowed" : ""
-      }`}
+      } ${className}`}
       disabled={pending}
     >
       {pending ? "Loading..." : text}
